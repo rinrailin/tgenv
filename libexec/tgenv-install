@@ -161,7 +161,7 @@ else
   warn_and_continue "No keybase install found, skipping OpenPGP signature verification"
 fi
 
-if [[ -n "${shasum_bin}" && -x "${shasum_bin}" ]]; then
+if [[ -n "${shasum_bin}" && -x "${shasum_bin}" && -n "${TGENV_IGNORE_SHA}" ]]; then
   (
     cd "${download_tmp}"
     "${shasum_bin}" \
