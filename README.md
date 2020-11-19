@@ -168,6 +168,29 @@ List all of the installable versions
 ...
 ```
 
+### Environment Variables
+
+#### TGENV
+
+##### `TGENV_AUTO_INSTALL`
+
+String (Default: true)
+
+Should tgenv automatically install terragrunt if the version specified by defaults or a .terragrunt-version file is not currently installed.
+
+```console
+TGENV_AUTO_INSTALL=false terragrunt plan
+```
+
+##### `TGENV_DEBUG`
+
+Integer (Default: "")
+
+Set the debug level for TGENV.
+
+* unset/empty-string: No debug output
+* set: Bash execution tracing
+
 ## .terragrunt-version
 If you put `.terragrunt-version` file on your project root, or in your home directory, tgenv detects it and uses the version written in it. If the version is `latest` or `latest:<regex>`, the latest matching version currently installed will be selected.
 
@@ -193,7 +216,6 @@ $ echo latest:^0.10 > .terragrunt-version
 $ terragrunt --version
 terragrunt v0.10.3
 ```
-
 
 ## Upgrading
 ### Automatic
