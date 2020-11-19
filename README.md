@@ -191,6 +191,18 @@ Set the debug level for TGENV.
 * unset/empty-string: No debug output
 * set: Bash execution tracing
 
+##### `TGENV_IGNORE_SHA`
+
+String (Default: "")
+
+When not empty string, will disable signature verification during [`tgenv install`](#tgenv-install-version). Useful when installing old versions of terragrunt (before v0.18.1).
+
+e.g.
+
+```console
+TGENV_IGNORE_SHA=1 tgenv install 0.17.3
+```
+
 ## .terragrunt-version
 If you put `.terragrunt-version` file on your project root, or in your home directory, tgenv detects it and uses the version written in it. If the version is `latest` or `latest:<regex>`, the latest matching version currently installed will be selected.
 
