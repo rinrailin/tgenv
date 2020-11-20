@@ -161,7 +161,7 @@ else
   warn_and_continue "No keybase install found, skipping OpenPGP signature verification"
 fi
 
-if [[ -n "${shasum_bin}" && -x "${shasum_bin}" && -n "${TGENV_IGNORE_SHA}" ]]; then
+if [ -n "${shasum_bin}" -a -x "${shasum_bin}" -a -z "${TGENV_IGNORE_SHA:-}" ]; then
   (
     cd "${download_tmp}"
     "${shasum_bin}" \
@@ -169,6 +169,8 @@ if [[ -n "${shasum_bin}" && -x "${shasum_bin}" && -n "${TGENV_IGNORE_SHA}" ]]; t
       -s \
       -c <(grep -F "${tarball_name}" "${shasums_name}") || error_and_die "SHA256 hash does not match!"
   )
+elif [ -n "${TGENV_IGNORE_SHA}" ]; then
+  warn_and_continue "Flag to ignore SHA checksum is set"
 else
   # Lack of shasum deserves a proper warning
   warn_and_continue "No shasum tool available. Skipping SHA256 hash validation"
