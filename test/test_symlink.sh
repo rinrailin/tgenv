@@ -23,7 +23,7 @@ export PATH="${TGENV_BIN_DIR}:${PATH}"
 
 echo "### Test supporting symlink"
 cleanup || error_and_die "Cleanup failed?!"
-tgenv install 0.12.15 || error_and_proceed "Install failed"
+TGENV_IGNORE_SHA=1 tgenv install 0.12.15 || error_and_proceed "Install failed"
 tgenv use 0.12.15 || error_and_proceed "Use failed"
 check_version 0.12.15 || error_and_proceed "Version check failed"
 

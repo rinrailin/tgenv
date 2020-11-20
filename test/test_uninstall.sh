@@ -21,7 +21,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=0.9.9
 (
-  tgenv install ${v} || exit 1
+  TGENV_IGNORE_SHA=1 tgenv install ${v} || exit 1
   tgenv uninstall ${v} || exit 1
   tgenv list | grep 0.9.9 && exit 1 || exit 0
 ) || error_and_proceed "Uninstall of version ${v} failed"
@@ -41,7 +41,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=$(tgenv list-remote-all | grep 0.12.15 | head -n 1)
 (
-  tgenv install latest:^0.12 || exit 1
+  TGENV_IGNORE_SHA=1 tgenv install latest:^0.12 || exit 1
   tgenv uninstall latest:^0.12 || exit 1
   tgenv list | grep ${v} && exit 1 || exit 0
 ) || error_and_proceed "Uninstalling latest version ${v} with Regex"

@@ -31,7 +31,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=$(tgenv list-remote-all | grep 0.11.1 | head -n 1)
 (
-  tgenv install latest:^0.11 || exit 1
+  TGENV_IGNORE_SHA=1 tgenv install latest:^0.11 || exit 1
   tgenv use latest:^0.11 || exit 1
   check_version ${v} || exit 1
 ) || error_and_proceed "Installing latest version ${v} with Regex"
@@ -41,7 +41,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=0.9.9
 (
-  tgenv install ${v} || exit 1
+  TGENV_IGNORE_SHA=1 tgenv install ${v} || exit 1
   tgenv use ${v} || exit 1
   check_version ${v} || exit 1
 ) || error_and_proceed "Installing specific version ${v}"
@@ -52,7 +52,7 @@ cleanup || error_and_die "Cleanup failed?!"
 v=0.12.3
 echo ${v} > ./.terragrunt-version
 (
-  tgenv install || exit 1
+  TGENV_IGNORE_SHA=1 tgenv install || exit 1
   check_version ${v} || exit 1
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 
@@ -62,7 +62,7 @@ cleanup || error_and_die "Cleanup failed?!"
 v=$(tgenv list-remote-all | grep -e '^0.9' | head -n 1)
 echo "latest:^0.9" > ./.terragrunt-version
 (
-  tgenv install || exit 1
+  TGENV_IGNORE_SHA=1 tgenv install || exit 1
   check_version ${v} || exit 1
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 

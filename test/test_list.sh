@@ -20,7 +20,7 @@ echo "### List local versions"
 cleanup || error_and_die "Cleanup failed?!"
 
 for v in 0.12.15 0.12.9 0.11.1 0.10.0 0.9.3; do
-  tgenv install ${v} || error_and_proceed "Install of version ${v} failed"
+  TGENV_IGNORE_SHA=1 tgenv install ${v} || error_and_proceed "Install of version ${v} failed"
 done
 
 result=$(tgenv list)
