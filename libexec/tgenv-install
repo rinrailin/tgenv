@@ -178,5 +178,4 @@ mkdir -p "${dst_path}" || error_and_die "Failed to make directory ${dst_path}"
 cp "${download_tmp}/${tarball_name}" "${dst_path}/terragrunt" || error_and_die "File copy failed"
 chmod +x "${dst_path}/terragrunt" || error_and_die "Change file mode failed"
 
-info "Installation of terragrunt v${version} successful"
-tgenv-use "${version}"
+info "Installation of terragrunt v${version} successful. To make this your default version, run 'tgenv use ${version}'"
