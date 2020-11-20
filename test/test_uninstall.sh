@@ -29,7 +29,7 @@ v=0.9.9
 echo "### Uninstall latest version"
 cleanup || error_and_die "Cleanup failed?!"
 
-v=$(tgenv list-remote | head -n 1)
+v=$(tgenv list-remote-all | head -n 1)
 (
   tgenv install latest || exit 1
   tgenv uninstall latest || exit 1
@@ -39,7 +39,7 @@ v=$(tgenv list-remote | head -n 1)
 echo "### Uninstall latest version with Regex"
 cleanup || error_and_die "Cleanup failed?!"
 
-v=$(tgenv list-remote | grep 0.12.15 | head -n 1)
+v=$(tgenv list-remote-all | grep 0.12.15 | head -n 1)
 (
   tgenv install latest:^0.12 || exit 1
   tgenv uninstall latest:^0.12 || exit 1
